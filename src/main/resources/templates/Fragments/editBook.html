@@ -1,0 +1,80 @@
+<section class="editBookModal" id="editBook" th:fragment="bookUpdate" xmlns:th="http://www.thymeleaf.org">
+    <h3>Book Update</h3>
+        <div class="edit-container">
+            <form id="editBookForm" action="" method="put">
+                <div class="form-entry">
+                    <label class="edit-label" for="editBookId">Book ID:</label>
+                    <input type="text" id="editBookId" name="bookId" required>
+                </div>
+                <div class="form-entry">
+                    <label class="edit-label" for="editBookAuthor">Author:</label>
+                    <input type="text" id="editBookAuthor" name="bookAuthor" required>
+                </div>
+                <div class="form-entry">
+                    <label class="edit-label" for="editBookTitle">Title:</label>
+                    <input type="text" id="editBookTitle" name="bookTitle" required>
+                </div>
+                <div class="form-entry">
+                    <label class="edit-label" for="editBookCost">Cost:</label>
+                    <input type="text" id="editBookCost" name="bookCost" required>
+                </div>
+                <div class="form-entry">
+                    <label class="edit-label" for="editBookQuantity">Quantity:</label>
+                    <input type="text" id="editBookQuantity" name="bookQuantity" required>
+                </div>
+                <div class="form-btn">
+                    <button class="edit-btn"type="submit">Update</button>
+                    <button class="edit-btn"type="button" onclick="cancel()">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            function cancel() {
+                
+                document.getElementById("editBookForm").reset();
+            }
+            
+            
+            document.getElementById("editBookForm").addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                var bookId = document.getElementById("editBookId").value;
+                var bookAuthor = document.getElementById("editBookAuthor").value;
+                var bookTitle = document.getElementById("editBookTitle").value;
+                var bookCost = document.getElementById("editBookCost").value;
+                var bookQuantity = document.getElementById("editBookQuantity").value;
+
+                var formData = {
+                    author: bookAuthor,
+                    title: bookTitle,
+                    cost: bookCost,
+                    quantity: bookQuantity
+                };
+
+                fetch(`http://127.0.0.1:8080/api/books/edit/${bookId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                       throw new Error('Network response was not ok');
+                    }
+                // Handle successful response
+                    console.log('Book updated successfully!');
+                // Optionally, you can redirect the user or perform other actions here
+                })
+                .catch(error => {
+                // Handle error
+                  console.error('There was a problem with your fetch operation:', error);
+                  });
+                })
+</script>
+
+            
+
+</section>

@@ -1,0 +1,4 @@
+<div id="modal-msg" th:if="${msg!=null}" th:fragment="msg-modal(msg)" xmlns:th="http://www.thymeleaf.org">
+    <h1 th:text="${msg}"></h1><br>
+    <button id="model-btn"  onclick=" displayModal('modal-msg')" th:text="@{ Ok }"></button>
+</div>

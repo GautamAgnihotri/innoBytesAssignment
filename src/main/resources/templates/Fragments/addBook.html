@@ -1,0 +1,55 @@
+<section class="container" th:fragment="addBook" xmlns:th="http://www.thymeleaf.org">
+
+    <!--   admin navbar starts -->
+    <section class="nav-section" id="adm-dash-nav-after">
+
+        <div class="nav nav-link-after active" onclick="changeNav('add-book-sec',this,0)" id="add-book">Add Books</div>
+        <div class="nav nav-link-after" onclick="changeNav('book-search-sec', this,1)" id="book-search">Book Search</div>
+        <div class="nav nav-link-after" onclick="changeNav('book-update-sec', this,2)" id="book-update">Book Update</div>
+        <div class="nav nav-link-after" onclick="changeNav('view-order-sec', this,3)" id="view-order">View Order</div>
+        <div class="nav nav-link-after" onclick="changeNav('signout-sec', this,4)" id="signout">Signout</div>
+
+    </section>
+    <!--    admin navbar ends-->
+
+    <section  id="add-book-sec" >
+
+
+    <!--   add book form section-->
+        <div class="add-book-img-sec">
+
+            <h2>Add books</h2>
+
+
+            <img id="add-book-img" th:src="@{/Images/LibraryImg.png}" alt="">
+
+        </div>
+        <div class="form-sec">
+            <form class="form" action="" id="addBookForm">
+                <div class="form-entry">
+                    <lable class="lable" for="bookId">Book Id</lable>
+                    <input type="text" required class="input-text" name="id" id="bookId"><br>
+                </div>
+                <div class="form-entry">
+                    <lable class="lable" for="bookId">Title</lable>
+                    <input type="text" required class="input-text" name="title" id="bookTitle"><br>
+                </div>
+                <div class="form-entry">
+                    <lable class="lable" for="bookAuthor">Author</lable>
+                    <input type="text" required class="input-text" name="author" id="bookAuthor"><br>
+                </div>
+                <div class="form-entry">
+                    <lable class="lable" for="bookCost">Cost</lable>
+                    <input type="text" required class="input-text" name="cost" id="bookCost"><br>
+                </div>
+                <div class="form-entry">
+                    <lable class="lable" for="bookQuantity">Quantity</lable>
+                    <input type="text" required class="input-text" name="quantity" id="bookQuantity"><br>
+                </div>
+
+                <input class="btn" type="submit" value="Add">
+            </form>
+        </div>
+    <!--   form section ends-->
+    </section>
+</section>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/CSS/style.css}">
+
+</head>
+<body>
+<!-- main main-container -->
+<div class="main-container">
+    <!-- //e-library heading section -->
+    <div class="img-section">
+        <h1 class="e-lib-heading">e-Library Management System</h1>
+    </div>
+    <!-- // heading ends
+    //button section -->
+    <div class="btn-section" id="adm-std-btn">
+
+        <div class="btn admin-btn" onclick="displayLogin('admin')">
+            <img class="adm-btn" th:src="@{/Images/laptopIcon.png}" alt="">
+            <h3>Admin</h3>
+        </div>
+        <div class="btn student-btn" onclick="displayLogin('student')">
+            <img class="std-btn" th:src="@{/Images/userIcon.png}" alt="">
+            <h3>Student</h3>
+        </div>
+
+    </div>
+<!--    // btn section ends-->
+        <!-- msg section starts-->
+        <div th:replace="~{Fragments/msgModal :: msg-modal(${msg})}"></div>
+        <!-- msg section ends -->
+
+    <!-- // admin login section -->
+    <div class="login-container admin" id="admin">
+        <div class="img-login-cont">
+            <img class="login-img" th:src="@{/Images/laptopBackgroundImg.png}" alt="">
+        </div>
+        <div class="login-form-container">
+            <form class="form" th:action="@{/auth}" method="post" >
+                <section class="form-entry field">
+                    <label class="label-login" for="admin-username">Username  </label>
+                    <input class="text-field"  required type="text" name="userName" id="admin-username"  >
+                </section>
+                <br>
+                <section class="form-entry field">
+                    <label class="label-login" for="admin-pass">Password </label>
+                    <input class="text-field" required type="password" name="password" id="admin-pass" >
+                </section>
+                <br>
+                <input type="hidden" value="admin" name="role" >
+                <section class="form-entry">
+                    <input class="submit-btn" type="submit" value="login" onclick="displayModal('modal-msg')">
+                </section>
+            </form>
+        </div>
+    </div>
+    <!-- admin login section ends -->
+    <!-- student login section starts -->
+    <div class="login-container" id="student">
+        <div class="img-login-cont">
+            <img class="login-img" th:src="@{/Images/laptopBackgroundImg.png}" alt="">
+        </div>
+        <div class="login-form-container">
+            <form class="form" action="" method="post">
+                <section class="form-entry field">
+                    <label class="label-login" for="std-log-username">Username  </label>
+                    <input class="text-field" type="text" name="username" id="std-log-username">
+                </section>
+                <br>
+                <section class="form-entry field">
+                    <label class="label-login" for="std-log-pass">Password </label>
+                    <input class="text-field" type="password" name="pass" id="std-log-pass">
+                </section>
+
+                <section class="form-entry reg-cont">
+                    <h5>Not a Member a yet ????</h5>
+                    <a href="#" onclick="displayRegister()">Register Now !!!</a>
+                </section>
+                <section class="form-entry">
+                    <input class="submit-btn" type="submit" value="login">
+                </section>
+            </form>
+        </div>
+    </div>
+    <!-- student login section ends -->
+    <!-- student registration section starts -->
+    <div class="login-container" id="student-reg">
+        <div class="img-login-cont">
+            <img class="login-img" th:src="@{/Images/laptopBackgroundImg.png}" alt="">
+        </div>
+        <div class="login-form-container">
+            <form class="form" action="" method="post">
+                <section class="form-entry field">
+                    <label class="label-login" for="std-username">Username  </label>
+                    <input class="text-field" type="text" name="username" id="std-username">
+                </section>
+                <br>
+                <section class="form-entry field">
+                    <label class="label-login" for="std-fullname">Full Name </label>
+                    <input class="text-field" type="text" name="fullName" id="std-fullname">
+                </section>
+                <br>
+                <section class="form-entry field">
+                    <label class="label-login" for="std-pass">Password </label>
+                    <input class="text-field" type="password" name="pass" id="std-pass">
+                </section>
+
+                <section class="form-entry">
+                    <input class="submit-btn" type="submit" value="register">
+                </section>
+            </form>
+        </div>
+    </div>
+    <!-- student registration sec ends -->
+
+</div>
+
+
+<script>
+    function displayLogin(loginForm){
+
+        const BtnSection = document.getElementById("adm-std-btn");
+        const login = document.getElementById(loginForm);
+        BtnSection.style.display = "none";
+        login.style.display = "flex";
+        console.log("function called for "+loginForm);
+    }
+    function displayRegister(){
+        const loginSection = document.getElementById("student");
+        const login = document.getElementById("student-reg");
+        loginSection.style.display = "none";
+        login.style.display = "flex";
+
+    }
+    function displayModal(id){
+    console.log("function called for "+id);
+       const modal = document.getElementById(id);
+       modal.style.display = 'none';
+    }
+
+
+</script>
+
+</body>
+</html>

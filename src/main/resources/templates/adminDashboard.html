@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Library</title>
+
+    <link rel="stylesheet" th:href="@{/CSS/dashboard.css}">
+</head>
+<body>
+    <!-- main main-container -->
+    <div class="main-container" th:if="${isLoggedIn}">
+        <!-- //e-library heading section -->
+        <div class="img-section" id="img-section">
+            <h1 class="e-lib-heading" id="e-lib-heading">e-Library<br> Management<br> System</h1>
+        </div>
+<!--         // heading ends-->
+             <!-- msg section start-->
+        <!-- msg section starts-->
+        <div th:replace="~{Fragments/msgModal :: msg-modal(${msg})}"></div>
+        <!-- msg section ends -->
+        <!-- msg section ends -->
+
+        <section class="nav-section" id="adm-dash-nav">
+            
+            <div class="nav nav-link" onclick="changeNav('add-book-sec',this,0)" id="add-book">Add Books</div>
+            <div class="nav nav-link" onclick="changeNav('book-search-sec', this,1)" id="book-search">Book Search</div>
+            <div class="nav nav-link" onclick="changeNav('book-update-sec', this,2)" id="book-update">Book Update</div>
+            <div class="nav nav-link" onclick="changeNav('view-order-sec', this,3)" id="view-order">View Order</div>
+            <div class="nav nav-link" onclick="changeNav('signout-sec', this,4)" id="signout">Signout</div>
+            
+        </section>
+
+        <!-- Nav button sections ends -->
+        <!-- add Books section start -->
+        <section class="cont" id="add-book-sec" th:replace="~{Fragments/addBook :: addBook}">
+
+        </section>
+        <!-- add Books section ends        -->
+        <!-- add Books section start -->
+        <section class="cont" id="book-search-sec" th:replace="~{Fragments/bookSearch :: bookSearch}">
+
+        </section>
+        <!-- add Books section ends        -->
+        <!-- add Books section start -->
+        <section class="cont" id="book-update-sec" th:replace="~{Fragments/bookUpdate :: bookUpdate}">
+
+        </section>
+        <!-- add Books section ends        -->
+        <!-- add Books section start -->
+        <section class="cont" id="view-order-sec" th:replace="~{Fragments/viewOrder :: viewOrder}">
+
+        </section>
+        <!-- add Books section ends        -->
+        <!-- add Books section start -->
+        <section class="cont" id="signout-sec" th:replace="~{Fragments/signout :: signout}">
+
+        </section>
+        <!-- add Books section ends        -->
+    </div>
+
+
+    <script>
+        function changeNav(sectionId, curElement ,index){
+            // hiding old navbar
+            console.log(sectionId);
+           const navSec =  document.getElementById("adm-dash-nav");
+            navSec.style.display = 'none';
+            // adjusting img section after click
+           const imgSection = document.getElementById("img-section");
+           imgSection.style.height = '40%';
+
+            // rendering sections
+           displaySection(sectionId,index);
+            }
+        function displaySection(sectionId , index){
+            const element = document.getElementsByClassName("container");
+            for(let i=0;i<element.length;i++){
+                element[i].style.display = "none";
+            }
+//            console.log("for element" + element[index]);
+            element[index].style.display = "block";
+            
+        }
+
+        function displayModal(id){
+            console.log("function called for "+id);
+            const modal = document.getElementById(id);
+            modal.style.display = 'none';
+        }
+        
+    </script>
+
+    <script th:src="@{/JavaScript/index.js}"></script>
+</body>
+</html>

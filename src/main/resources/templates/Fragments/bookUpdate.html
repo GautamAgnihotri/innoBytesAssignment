@@ -1,0 +1,46 @@
+<section class="container" th:fragment="bookUpdate" xmlns:th="http://www.thymeleaf.org">
+
+    <!--   admin navbar starts -->
+    <section class="nav-section" id="adm-dash-nav-after">
+
+        <div class="nav nav-link-after" onclick="changeNav('add-book-sec',this,0)" id="add-book">Add Books</div>
+        <div class="nav nav-link-after" onclick="changeNav('book-search-sec', this,1)" id="book-search">Book Search</div>
+        <div class="nav nav-link-after active" onclick="changeNav('book-update-sec', this,2)" id="book-update">Book Update</div>
+        <div class="nav nav-link-after" onclick="changeNav('view-order-sec', this,3)" id="view-order">View Order</div>
+        <div class="nav nav-link-after" onclick="changeNav('signout-sec', this,4)" id="signout">Signout</div>
+
+    </section>
+    <!--    admin navbar ends-->
+
+
+       <!--  book search section starts  -->
+    <section id="book-update-sec" >
+
+        
+        <!--  book search form section-->
+        <div class="add-book-img-sec">
+
+            
+            <img id="add-book-img" th:src="@{/Images/bookUpdateImg.png}" alt="bookSearchImg">
+
+        </div>
+        <div class="form-sec">
+            <h2>Book Update</h2> <br>
+            <form class="form"  id="bookUpdateForm">
+                <div class="form-entry">
+                    <lable class="lable" for="bookId">Book Id</lable>
+                    <input type="text" required class="input-text" name="id" id="bookId"><br>
+                </div>
+                
+                <input class="btn" type="submit" value="Search">
+            </form>
+        </div>
+        <!--   form section ends-->
+    </section>
+    <div class="result-container" id="update-book-container"></div>
+    <div th:replace="~{Fragments/editBook :: bookUpdate}"></div>
+
+
+
+    
+</section>

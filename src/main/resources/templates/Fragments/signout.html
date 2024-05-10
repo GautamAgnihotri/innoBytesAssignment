@@ -1,0 +1,32 @@
+<section class="container" th:fragment="signout" xmlns:th="http://www.thymeleaf.org">
+
+    <!--   admin navbar starts -->
+    <section class="nav-section" id="adm-dash-nav-after">
+
+        <div class="nav nav-link-after" onclick="changeNav('add-book-sec',this,0)" id="add-book">Add Books</div>
+        <div class="nav nav-link-after" onclick="changeNav('book-search-sec', this,1)" id="book-search">Book Search</div>
+        <div class="nav nav-link-after" onclick="changeNav('book-update-sec', this,2)" id="book-update">Book Update</div>
+        <div class="nav nav-link-after" onclick="changeNav('view-order-sec', this,3)" id="view-order">View Order</div>
+        <div class="nav nav-link-after active" onclick="changeNav('signout-sec', this,4)" id="signout">Signout</div>
+
+    </section>
+    <!--    admin navbar ends-->
+
+    <section id="signout-sec" >
+
+
+        <!--   add book form section-->
+        <div class="add-book-img-sec">
+
+            
+            <img id="add-book-img" th:src="@{/Images/SignoutImg.png}" alt="SignoutImg">
+
+        </div>
+        <div class="form-sec">
+            <form class="form" th:action="@{/auth/signout}" id="addBookForm" method="post">
+            <input class="btn" type="submit" value="Signout">
+            </form>
+        </div>
+        <!--   form section ends-->
+    </section>
+</section>

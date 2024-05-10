@@ -1,0 +1,78 @@
+<section class="container" th:fragment="viewOrder" xmlns:th="http://www.thymeleaf.org">
+
+    <!--   admin navbar starts -->
+    <section class="nav-section" id="adm-dash-nav-after">
+
+        <div class="nav nav-link-after" onclick="changeNav('add-book-sec',this,0)" id="add-book">Add Books</div>
+        <div class="nav nav-link-after" onclick="changeNav('book-search-sec', this,1)" id="book-search">Book Search</div>
+        <div class="nav nav-link-after" onclick="changeNav('book-update-sec', this,2)" id="book-update">Book Update</div>
+        <div class="nav nav-link-after active" onclick="changeNav('view-order-sec', this,3)" id="view-order">View Order</div>
+        <div class="nav nav-link-after" onclick="changeNav('signout-sec', this,4)" id="signout">Signout</div>
+
+    </section>
+    <!--    admin navbar ends-->
+
+    <section id="view-order-sec" >
+
+
+        <!--   add book form section-->
+        <div class="add-book-img-sec">
+
+            <h2>View Order</h2>
+
+
+            <img id="add-book-img" th:src="@{/Images/viewOrder.png}" alt="">
+
+        </div>
+        <div class="viewOrder-form-sec">
+            <form class="form" action="" id="">
+                <div class="form-entry">
+                    <label class="label" for="searchTitle">Book Name:</label>
+                    <input type="text" class="input-text" id="searchViewTitle" name="searchTitle" required>
+                    <button class="edit-btn sug-btn" id="searchBookbtn" >Search</button>
+                </div>
+                <div class="form-entry">
+                    <label class="label" for="viewOrderTitle">Suggested:</label>
+                    <input type="text" class="input-text" id="viewOrderTitle" name="title" required>
+                    <div> </div>
+                </div>
+                <div class="form-entry">
+                    <label class="label" for="viewOrderAuthor">Author:</label>
+                    <input type="text"class="input-text" id="viewOrderAuthor" name="author" required>
+                    <div> </div>
+                </div>
+                
+                <div class="form-btn">
+                    <button class="edit-btn"type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+        <!--   form section ends-->
+    </section>
+
+    <script>
+        const searchBookBtn = document.getElementById("searchBookbtn");
+      
+        searchBookBtn.addEventListener('click',async event =>{
+            event.preventDefault();
+           
+            const inputTitle = document.getElementById("searchViewTitle").value;
+            console.log("value: "+inputTitle);
+          
+            const res = await fetch(`http://127.0.0.1:8080/api/books/getBook/${inputTitle}`)
+           
+            if(res.ok){
+            const data = await res.json();
+            const firstData = data[0]
+            console.log(firstData["title"]);
+            
+            const inputSuggestedTitle = document.getElementById("viewOrderTitle");
+            const inputAuthor = document.getElementById("viewOrderAuthor");
+            inputSuggestedTitle.value = firstData["title"];
+            inputAuthor.value = firstData["author"];
+            } else{
+                throw new Error(" Error in book fetching at viewOrder");
+            }
+        })
+    </script>
+</section>
